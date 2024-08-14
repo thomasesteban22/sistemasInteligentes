@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Distance(ABC):
     """
     Abstract base class to compute the distance between two points.
@@ -17,8 +18,11 @@ class Distance(ABC):
             point1: The first point.
             point2: The second point.
         """
-        self.point1 = point1
-        self.point2 = point2
+        try:
+            self.point1 = point1
+            self.point2 = point2
+        except Exception as e:
+            raise ValueError("Failed to initialize Distance with the given points.") from e
 
     @abstractmethod
     def compute_distance(self):
@@ -26,8 +30,16 @@ class Distance(ABC):
         Abstract method to compute the distance between point1 and point2.
 
         This method must be implemented by subclasses to perform the actual distance calculation.
-        
+
         Returns:
             The distance between point1 and point2.
+
+        Raises:
+            NotImplementedError: This method must be implemented by subclasses.
         """
-        pass
+        try:
+            pass  # Subclasses should implement this method
+        except NotImplementedError as e:
+            raise NotImplementedError("The compute_distance method must be implemented by subclasses.") from e
+        except Exception as e:
+            raise RuntimeError("An unexpected error occurred while computing the distance.") from e
