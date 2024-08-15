@@ -79,3 +79,5 @@ class EuclideanDistance(Distance):
             raise RuntimeError(
                 "An unexpected error occurred while computing distance."
             ) from e
+
+
